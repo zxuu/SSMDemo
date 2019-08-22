@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 将namespace的值设置为DAO类对应的路径 -->
+<mapper namespace="Dao.BabyMapper">
+
+    <resultMap id="BaseResultMap" type="Entity.Baby">
+        <id column="id" property="id"/>
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <result column="sex" property="sex"/>
+    </resultMap>
+    <!-- 查询数据条目 -->
+    <select id="getTotal" resultType="int">
+        SELECT COUNT(*) FROM baby
+    </select>
+
+    <!-- 增加一条数据 -->
+    <insert id="addBaby" parameterType="Entity.Baby">
+        INSERT INTO baby VALUES( #{id}, #{name}, #{age}, #{sex})
+    </insert>
+
+    <!-- 删除一条数据 -->
+    <delete id="deleteBaby" parameterType="int">
+        DELETE FROM baby WHERE id = #{id}
+    </delete>
+
+    <!-- 更新一条数据 -->
+    <update id="updateBaby" parameterType="Entity.Baby">
+        UPDATE baby SET id = #{id}, name = #{name},
+        age = #{age}, sex = #{sex} WHERE id = #{id}
+    </update>
+
+    <!-- 查询一条数据 -->
+    <select id="getBaby" resultMap="BaseResultMap" parameterType="int">
+        SELECT * FROM baby WHERE id = #{id}
+    </select>
+
+
+
+    <!-- 查询从start位置开始的count条数据-->
+    <select id="list" resultMap="BaseResultMap">
+        SELECT * FROM baby ORDER BY id desc limit #{param1}, #{param2}
+    </select>
+</mapper>

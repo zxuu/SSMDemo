@@ -60,7 +60,7 @@ public class BabyController {
 	        request.setAttribute("babys", babys);
 	        request.setAttribute("page", page);
 
-	        return "listBaby";
+	        return "/listBaby.jsp";
 	    }
 
 	    @RequestMapping("/deleteBaby")

@@ -34,7 +34,9 @@ public class BabyController {
 	        baby.setName(name);
 	        baby.setAge(age);
 	        baby.setSex(sex);
+
 	        babyService.addBaby(baby);
+
 	        return "redirect:listBaby";
 	    }
 

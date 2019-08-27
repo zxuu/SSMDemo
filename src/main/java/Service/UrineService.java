@@ -22,4 +22,9 @@ public class UrineService implements IUrineService{
     public void deleteRecord(String urineId) {
         urineMapper.deleteRecord(urineId);
     }
+
+    @Override
+    public void insertRecord(Urine urine) {
+        urineMapper.insertRecord(urine);
+    }
 }

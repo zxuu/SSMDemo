@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 将namespace的值设置为DAO类对应的路径 -->
+<mapper namespace="Dao.AdminMapper">
+
+    <!-- 查询数据条目 -->
+    <select id="getTotal" resultType="int">
+        SELECT COUNT(*) FROM admin
+    </select>
+
+    <!-- 增加一条数据 -->
+    <insert id="addAdmin" parameterType="Admin">
+        INSERT INTO admin VALUES( #{id}, #{password})
+    </insert>
+
+    <!-- 删除一条数据 -->
+    <delete id="deleteAdmin" parameterType="int">
+        DELETE FROM admin WHERE id = #{id}
+    </delete>
+
+    <!-- 更新一条数据 -->
+    <update id="updateAdmin" parameterType="Admin">
+        UPDATE admin SET id = #{id}, password = #{password} WHERE id = #{id}
+    </update>
+
+    <!-- 查询一条数据 -->
+    <select id="getAdmin" resultMap="admin" parameterType="String">
+        SELECT * FROM admin WHERE id = #{id}
+    </select>
+
+    <resultMap id="admin" type="admin">
+        <id column="id" property="id"/>
+        <result column="id" property="id"/>
+        <result column="password" property="password"/>
+     
+    </resultMap>
+
+    <!-- 查询从start位置开始的count条数据-->
+    <select id="list" resultMap="admin">
+        SELECT * FROM admin ORDER BY id desc limit #{param1}, #{param2}
+    </select>
+</mapper>

@@ -36,11 +36,9 @@
         delete from urine
         where urineId = #{urineId,jdbcType=VARCHAR}
     </delete>
-    <insert id="insert" parameterType="Entity.Student">
-        insert into student (Uid, Name, Age,
-        ClassId)
-        values (#{uid,jdbcType=BINARY}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER},
-        #{classid,jdbcType=INTEGER})
+    <insert id="insertRecord" parameterType="Entity.Urine">
+        INSERT INTO urine (urineId, time, cateUrine)
+        VALUES (#{urineId}, #{time}, #{cateUrine})
     </insert>
     <insert id="insertSelective" parameterType="Entity.Student">
         insert into student

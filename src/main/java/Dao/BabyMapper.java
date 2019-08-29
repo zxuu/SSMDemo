@@ -7,6 +7,10 @@ import java.util.List;
 
 @Repository
 public interface BabyMapper {
+    String getId(String name);
+    int getMale();
+    int getFemale();
+
     int getTotal();
     void addBaby(Baby baby);
     void deleteBaby(int id);

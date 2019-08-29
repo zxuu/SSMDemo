@@ -11,7 +11,7 @@
     </select>
 
     <!-- 增加一条数据 -->
-    <insert id="addAdmin" parameterType="Admin">
+    <insert id="addAdmin" parameterType="Entity.Admin">
         INSERT INTO admin VALUES( #{id}, #{password})
     </insert>
 
@@ -21,16 +21,16 @@
     </delete>
 
     <!-- 更新一条数据 -->
-    <update id="updateAdmin" parameterType="Admin">
+    <update id="updateAdmin" parameterType="Entity.Admin">
         UPDATE admin SET id = #{id}, password = #{password} WHERE id = #{id}
     </update>
 
     <!-- 查询一条数据 -->
-    <select id="getAdmin" resultMap="admin" parameterType="String">
+    <select id="getAdmin" resultMap="BaseResultMap" parameterType="String">
         SELECT * FROM admin WHERE id = #{id}
     </select>
 
-    <resultMap id="admin" type="admin">
+    <resultMap id="BaseResultMap" type="Entity.Admin">
         <id column="id" property="id"/>
         <result column="id" property="id"/>
         <result column="password" property="password"/>
@@ -38,7 +38,7 @@
     </resultMap>
 
     <!-- 查询从start位置开始的count条数据-->
-    <select id="list" resultMap="admin">
+    <select id="list" resultMap="BaseResultMap">
         SELECT * FROM admin ORDER BY id desc limit #{param1}, #{param2}
     </select>
 </mapper>

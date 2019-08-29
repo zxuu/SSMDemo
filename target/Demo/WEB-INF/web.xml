@@ -28,6 +28,7 @@
         <servlet-name>springMVC</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+     
     <!-- 字符编码过滤器 -->
     <filter>
         <filter-name>characterEncodingFilter</filter-name>

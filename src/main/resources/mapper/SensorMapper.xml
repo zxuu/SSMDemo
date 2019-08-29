@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 将namespace的值设置为DAO类对应的路径 -->
+<mapper namespace="Dao.SensorMapper">
+
+    <!-- 查询数据条目 -->
+    <select id="getTotal" resultType="int">
+        SELECT COUNT(*) FROM sensor
+    </select>
+
+    <!-- 增加一条数据 -->
+    <insert id="addSensor" parameterType="Entity.Sensor">
+        INSERT INTO sensor VALUES( #{id}, #{temp}, #{humi}, #{time})
+    </insert>
+
+    <!-- 删除一条数据 -->
+    <delete id="deleteSensor" parameterType="int">
+        DELETE FROM sensor WHERE id = #{id}
+    </delete>
+
+    <!-- 更新一条数据 -->
+    <update id="updateSensor" parameterType="Entity.Sensor">
+        UPDATE sensor SET id = #{id}, temp = #{temp},
+        humi = #{humi}, time = #{time} WHERE id = #{id}
+    </update>
+
+    <!-- 查询一条数据 -->
+    <select id="getSensor" resultMap="BaseResultMap" parameterType="int">
+        SELECT * FROM sensor WHERE id = #{id}
+    </select>
+
+    <resultMap id="BaseResultMap" type="Entity.Sensor">
+        <id column="id" property="id"/>
+        <result column="id" property="id"/>
+        <result column="temp" property="temp"/>
+        <result column="humi" property="humi"/>
+        <result column="time" property="time"/>
+    </resultMap>
+
+    <!-- 查询从start位置开始的count条数据-->
+    <select id="list" resultMap="BaseResultMap">
+        SELECT * FROM sensor WHERE id = #{id}
+    </select>
+</mapper>

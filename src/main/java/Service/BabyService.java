@@ -8,6 +8,10 @@ import java.util.List;
 
 public interface BabyService {
 
+    String getId(String name);
+    int getMale();
+    int getFemale();
+
     /**
      * 获取到 Baby 的总数
      * @return

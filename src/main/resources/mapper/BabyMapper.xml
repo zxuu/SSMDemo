@@ -12,6 +12,20 @@
         <result column="age" property="age"/>
         <result column="sex" property="sex"/>
     </resultMap>
+
+    <!-- 查询传感器id -->
+    <select id="getId" resultType="String">
+        SELECT id FROM baby where name = #{name}
+    </select>
+    <!-- 查询男性数目 -->
+    <select id="getMale" resultType="int">
+        SELECT COUNT(*) FROM baby where sex = "男"
+    </select>
+    <!-- 查询女性数目-->
+    <select id="getFemale" resultType="int">
+        SELECT COUNT(*) FROM baby where sex = "女"
+    </select>
+
     <!-- 查询数据条目 -->
     <select id="getTotal" resultType="int">
         SELECT COUNT(*) FROM baby

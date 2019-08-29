@@ -13,7 +13,20 @@ public  class BabyServiceImpl implements BabyService {
 	  @Autowired
 	  BabyMapper babyDao;
 
-	  @Override
+	@Override
+	public String getId(String name) {
+		return babyDao.getId(name);
+	}
+	@Override
+	public int getMale() {
+		return babyDao.getMale();
+	}
+	@Override
+	public int getFemale() {
+		return babyDao.getFemale();
+	}
+
+	@Override
 	    public int getTotal() {
 	        return babyDao.getTotal();
 	    }

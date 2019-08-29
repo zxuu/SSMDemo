@@ -20,6 +20,13 @@ public class BabyController {
 	   @Autowired
 	    private BabyService babyService;
 
+	    @RequestMapping("/toAdd")
+	    public ModelAndView toAdd() {
+	    	ModelAndView mav = new ModelAndView("addBaby");
+
+	    	return mav;
+	    }
+
 	    @RequestMapping("/addBaby")
 	    public String addBaby(HttpServletRequest request, HttpServletResponse response) {
 
@@ -56,13 +63,16 @@ public class BabyController {
 	        Page page = new Page(start, count);
 
 	        List<Baby> babys = babyService.list(page.getStart(), page.getCount());
-	        int total = babyService.getTotal();
-	        page.setTotal(total);
+			int total = babyService.getTotal();
+			int male = babyService.getMale();
+			int female = babyService.getFemale();
+			page.setTotal(total);
 
-	        request.setAttribute("babys", babys);
-	        request.setAttribute("page", page);
-
-	        return "/listBaby.jsp";
+			request.setAttribute("babys", babys);
+			request.setAttribute("page", page);
+			request.setAttribute("male", male);
+			request.setAttribute("female", female);
+	        return "listBaby";
 	    }
 
 	    @RequestMapping("/deleteBaby")

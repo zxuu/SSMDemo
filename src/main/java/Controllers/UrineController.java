@@ -53,13 +53,13 @@ public class UrineController {
     }
 
 
-    @RequestMapping(value = "http://192.168.0.1/cgi-bin/node.cgi",method = RequestMethod.GET)
-    public String Gett(){
-        List<Urine> urineList = service.selectByCondition(new Urine());
-        System.out.println("999999");
-        String jsonResult = com.alibaba.fastjson.JSON.toJSONString(urineList);
-        return jsonResult;
-
-
-    }
+//    @RequestMapping(value = "http://192.168.0.1/cgi-bin/node.cgi",method = RequestMethod.GET)
+//    public String Gett(){
+//        List<Urine> urineList = service.selectByCondition(new Urine());
+//        System.out.println("999999");
+//        String jsonResult = com.alibaba.fastjson.JSON.toJSONString(urineList);
+//        return jsonResult;
+//
+//
+//    }
 }

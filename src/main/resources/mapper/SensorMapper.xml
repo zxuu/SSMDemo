@@ -43,4 +43,7 @@
     <select id="list" resultMap="BaseResultMap">
         SELECT * FROM sensor WHERE id = #{id}
     </select>
+    <select id="listAllSensor" resultMap="BaseResultMap">
+        SELECT * FROM sensor
+    </select>
 </mapper>

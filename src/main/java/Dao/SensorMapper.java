@@ -14,4 +14,5 @@ public interface SensorMapper {
     void updateSensor(Sensor sensor);
     Sensor getSensor(int id);
     List<Sensor> list(int id);
+    List<Sensor> listAllSensor();
 }

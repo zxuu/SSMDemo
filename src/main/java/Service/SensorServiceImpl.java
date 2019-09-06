@@ -40,5 +40,10 @@ public class SensorServiceImpl implements SensorService {
 	        return SensorDao.list(id);
 	    }
 
+	@Override
+	public List<Sensor> listAllSensor() {
+		return SensorDao.listAllSensor();
+	}
+
 
 }

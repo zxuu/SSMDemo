@@ -45,4 +45,5 @@ public interface SensorService {
      * @return
      */
     List<Sensor> list(int id);
+    List<Sensor> listAllSensor();
 }

@@ -33,7 +33,7 @@ public class Always implements InitializingBean {
                 while (true) {
 
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(4500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -74,15 +74,15 @@ public class Always implements InitializingBean {
                         //总list
                         List<SensorL> list = JSONArray.parseArray(result, SensorL.class);
 //                        System.out.println(result); //到这里就获取到结果了result是结果
-                        List<funcList> tempMList = JSONArray.parseArray(list.get(1).getFuncList(), funcList.class);
+                        List<funcList> tempMList = JSONArray.parseArray(list.get(2).getFuncList(), funcList.class);
 //                        System.out.println(tempMList.size()+":size");
                         if (tempMList.size() > 0) {
 //                            System.out.println("小李尿不湿温度： " + tempMList.get(0).getData().toString() + " ℃");
                             System.out.println("小李尿不湿湿度： " + tempMList.get(1).getData().toString() + " 湿度");
                             System.out.println(Float.parseFloat(tempMList.get(1).getData().toString()) > 50.0);
                             if (Float.parseFloat(tempMList.get(1).getData().toString()) > 50.0
-                                    && Float.parseFloat(tempMList.get(1).getData().toString()) < 90.0) {
-                                SendPhoneData.sendData("小李");
+                                    ) {
+                                SendPhoneData.sendAlertData("小李");
                                 System.out.println("小李小便啦，爸爸妈妈快去处理吧！");
                             }
 
@@ -104,7 +104,7 @@ public class Always implements InitializingBean {
                             System.out.println(Float.parseFloat(tempJList.get(1).getData().toString()) > 50.0);
                             if (Float.parseFloat(tempJList.get(1).getData().toString()) > 50.0
                                     ) {
-                                SendPhoneData.sendData("小王");
+                                SendPhoneData.sendAlertData("小王");
                                 System.out.println("小王小便啦，爸爸妈妈快去处理吧！");
 //                                SendPhoneData.sendData("小红");
                             }

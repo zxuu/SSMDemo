@@ -1,9 +1,11 @@
 package Controllers;
 
 import Entity.Baby;
+import Entity.Sensor;
 import Entity.Urine;
 import Service.BabyService;
 import Service.IUrineService;
+import Service.SensorService;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -22,11 +24,13 @@ public class UrineController {
 
     @Autowired
     private BabyService babyService;
+    @Autowired
+    private SensorService sensorService;
 
     @RequestMapping(value = "/getAllBabys",method = RequestMethod.POST)
     public String Gett(){
 //			System.out.println(requestBody.getParameter(""));
-        List<Baby> urineList = babyService.selectBabys(new Baby());
+        List<Baby> urineList = babyService.list(0,10);
 
         String jsonResult = com.alibaba.fastjson.JSON.toJSONString(urineList);
         System.out.println("babys:"+jsonResult);
@@ -42,6 +46,13 @@ public class UrineController {
         return jsonResult;
     }
 
+    @RequestMapping(value = "getSensorsData",method = RequestMethod.POST)
+    public String Getsensor(){
+        List<Sensor> sensorList = sensorService.listAllSensor();
+        String jsonResult = com.alibaba.fastjson.JSON.toJSONString(sensorList);
+        System.out.println("getSensorsData"+jsonResult);
+        return jsonResult;
+    }
     @RequestMapping(value = "/deleteByName",method = RequestMethod.POST)
     public void deleteByName(@RequestParam(value = "name",defaultValue = "no") String s){
         System.out.println(s);

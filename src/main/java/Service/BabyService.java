@@ -48,4 +48,6 @@ public interface BabyService {
      * @return
      */
     List<Baby> list(int start, int count);
+
+    List<Baby> selectBabys(Baby baby);
 }

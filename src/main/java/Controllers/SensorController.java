@@ -110,11 +110,11 @@ public class SensorController {
 				result = sb.toString();
 				List<SensorL> list = JSONArray.parseArray(result, SensorL.class);
 				int num = 0;
-				String[] names = new String[]{"null","小李","小王"};
+				String[] names = new String[]{"null","小李","null","小王"};
 				if (id.equals("355eb850")) {
 					num = 1;
 				} else {
-					num = 2;
+					num = 3;
 				}
 //			System.out.println(result); //到这里就获取到结果了result是结果
 				List<funcList> tempMList = JSONArray.parseArray(list.get(num).getFuncList(), funcList.class);
@@ -123,11 +123,8 @@ public class SensorController {
 //					System.out.println(names[num]+"尿不湿温度： " + tempMList.get(0).getData().toString() + " ℃");
 					System.out.println(names[num]+"尿不湿湿度： " + tempMList.get(1).getData().toString() + " 湿度");
 					System.out.println(Float.valueOf(tempMList.get(1).getData().toString()) > 50);
-					if (Float.valueOf(tempMList.get(1).getData().toString()) > 50) {
-						System.out.println("发送了！！！！！！！！！！！！");
-						SendPhoneData.sendData("小李,37,56");
-					    System.out.println(names[num]+"小便啦，爸爸妈妈快去处理吧！");
-					}
+					SendPhoneData.sendData(names[num]+",37,56");
+					System.out.println(names[num]+"RFID");
 
 					Sensor sensor = new Sensor();
 					sensor.setId(0);
@@ -146,5 +143,15 @@ public class SensorController {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	//zxuu
+	@RequestMapping(value = "getSensorsData",method = RequestMethod.POST)
+	public String Get(HttpServletRequest requestBody){
+		System.out.println(requestBody.getParameter(""));
+		List<Sensor> urineList = sensorService.list(1);
+
+		String jsonResult = com.alibaba.fastjson.JSON.toJSONString(urineList);
+		return jsonResult;
 	}
 }

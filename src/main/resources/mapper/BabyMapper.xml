@@ -13,6 +13,15 @@
         <result column="sex" property="sex"/>
     </resultMap>
 
+    <resultMap id="BaseResultMap2" type="Entity.Baby">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="age" jdbcType="INTEGER" property="age" />
+        <result column="sex" jdbcType="VARCHAR" property="sex" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, age,sex
+    </sql>
     <!-- 查询传感器id -->
     <select id="getId" resultType="String">
         SELECT id FROM baby where name = #{name}
@@ -57,5 +66,26 @@
     <!-- 查询从start位置开始的count条数据-->
     <select id="list" resultMap="BaseResultMap">
         SELECT * FROM baby ORDER BY id desc limit #{param1}, #{param2}
+    </select>
+
+    <select id="selectBabys" parameterType="Entity.Baby" resultMap="BaseResultMap2">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from baby
+        <where>
+            1=1
+            <if test="id != null">
+                and id=#{id,jdbcType=INTEGER}
+            </if>
+            <if test="name != null">
+                and name=#{name,jdbcType=VARCHAR}
+            </if>
+            <if test="age != null">
+                and age=#{age,jdbcType=INTEGER}
+            </if>
+            <if test="sex != null">
+                and sex=#{sex,jdbcType=VARCHAR}
+            </if>
+        </where>
     </select>
 </mapper>

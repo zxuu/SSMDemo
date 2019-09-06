@@ -51,5 +51,10 @@ public  class BabyServiceImpl implements BabyService {
 	        return babyDao.list(start, count);
 	    }
 
+	@Override
+	public List<Baby> selectBabys(Baby baby) {
+		return babyDao.selectBabys(baby);
+	}
+
 
 }

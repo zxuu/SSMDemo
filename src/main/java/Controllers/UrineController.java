@@ -2,6 +2,7 @@ package Controllers;
 
 import Entity.Baby;
 import Entity.Urine;
+import Service.BabyService;
 import Service.IUrineService;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,25 @@ public class UrineController {
     @Autowired
     private IUrineService service;
 
-    @RequestMapping(value = "urineCheck",method = RequestMethod.POST)
-    public String Get(HttpServletRequest requestBody){
-        System.out.println(requestBody.getParameter(""));
-        List<Urine> urineList = service.selectByCondition(new Urine());
+    @Autowired
+    private BabyService babyService;
+
+    @RequestMapping(value = "/getAllBabys",method = RequestMethod.POST)
+    public String Gett(){
+//			System.out.println(requestBody.getParameter(""));
+        List<Baby> urineList = babyService.selectBabys(new Baby());
 
         String jsonResult = com.alibaba.fastjson.JSON.toJSONString(urineList);
+        System.out.println("babys:"+jsonResult);
+        return jsonResult;
+    }
+
+    @RequestMapping(value = "babyCheck",method = RequestMethod.POST)
+    public String Get(){
+//        System.out.println(requestBody.getParameter(""));
+        List<Urine> urineList2 = service.selectByCondition(new Urine());
+        String jsonResult = com.alibaba.fastjson.JSON.toJSONString(urineList2);
+        System.out.println(jsonResult);
         return jsonResult;
     }
 

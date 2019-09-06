@@ -108,12 +108,13 @@ public class BabyController {
 	    }
 
 	    //zxuu
-		@RequestMapping(value = "getAllBabys",method = RequestMethod.POST)
-		public String Get(HttpServletRequest requestBody){
-			System.out.println(requestBody.getParameter(""));
-			List<Baby> urineList = babyService.list(0,10);
-
-			String jsonResult = com.alibaba.fastjson.JSON.toJSONString(urineList);
-			return jsonResult;
-		}
+//		@RequestMapping(value = "getAllBabys",method = RequestMethod.POST)
+//		public String Get(){
+////			System.out.println(requestBody.getParameter(""));
+//			List<Baby> urineList = babyService.list(0,10);
+//
+//			String jsonResult = com.alibaba.fastjson.JSON.toJSONString(urineList);
+//			System.out.println("babys:"+jsonResult);
+//			return jsonResult;
+//		}
 }

@@ -6,7 +6,6 @@ import java.net.*;
 
 public class SendPhoneData {
     public static void sendData(String s){
-        System.out.println("发送端启动...");
         /*
         *创建UDP传输的发送端
         * 思路：
@@ -21,7 +20,7 @@ public class SendPhoneData {
         //1.udpsocket服务对象，使用DatagramSocket创建,可以指明本地IP和端口
         DatagramSocket ds = null;
         try {
-            ds = new DatagramSocket(5051);
+            ds = new DatagramSocket(5053);
             //2.将要发送的数据封装到数据包中
 //            String str ="udp传输，udp手机端服务器终于搞定了";
             byte[] buf =s.getBytes("utf-8");

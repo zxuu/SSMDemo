@@ -71,6 +71,7 @@ public class Always implements InitializingBean {
                         }
                         String result;
                         result = sb.toString();
+                        //总list
                         List<SensorL> list = JSONArray.parseArray(result, SensorL.class);
 //                        System.out.println(result); //到这里就获取到结果了result是结果
                         List<funcList> tempMList = JSONArray.parseArray(list.get(1).getFuncList(), funcList.class);
@@ -79,8 +80,8 @@ public class Always implements InitializingBean {
 //                            System.out.println("小李尿不湿温度： " + tempMList.get(0).getData().toString() + " ℃");
                             System.out.println("小李尿不湿湿度： " + tempMList.get(1).getData().toString() + " 湿度");
                             System.out.println(Float.parseFloat(tempMList.get(1).getData().toString()) > 50.0);
-                            if (Float.parseFloat(tempMList.get(1).getData().toString()) > 50.0 &&
-                                    Float.parseFloat(tempMList.get(1).getData().toString()) < 90.0) {
+                            if (Float.parseFloat(tempMList.get(1).getData().toString()) > 50.0
+                                    && Float.parseFloat(tempMList.get(1).getData().toString()) < 90.0) {
                                 SendPhoneData.sendData("小李");
                                 System.out.println("小李小便啦，爸爸妈妈快去处理吧！");
                             }
@@ -96,15 +97,15 @@ public class Always implements InitializingBean {
                             System.out.println("小李数据不对");
                         }
 
-                        List<funcList> tempJList = JSONArray.parseArray(list.get(2).getFuncList(), funcList.class);
+                        List<funcList> tempJList = JSONArray.parseArray(list.get(3).getFuncList(), funcList.class);
                         if (tempJList.size() > 0) {
 //                            System.out.println("小军尿不湿温度： " + tempJList.get(0).getData().toString() + " ℃");
-                            System.out.println("小军尿不湿湿度： " + tempJList.get(1).getData().toString() + " 湿度");
-                            System.out.println(Float.parseFloat(tempMList.get(1).getData().toString()) > 50.0);
-                            if (Float.parseFloat(tempMList.get(1).getData().toString()) > 50.0
+                            System.out.println("小王尿不湿湿度： " + tempJList.get(1).getData().toString() + " 湿度");
+                            System.out.println(Float.parseFloat(tempJList.get(1).getData().toString()) > 50.0);
+                            if (Float.parseFloat(tempJList.get(1).getData().toString()) > 50.0
                                     ) {
-                                SendPhoneData.sendData("小军");
-                                System.out.println("小军小便啦，爸爸妈妈快去处理吧！");
+                                SendPhoneData.sendData("小王");
+                                System.out.println("小王小便啦，爸爸妈妈快去处理吧！");
 //                                SendPhoneData.sendData("小红");
                             }
                             Sensor sensor2 = new Sensor();
@@ -114,7 +115,7 @@ public class Always implements InitializingBean {
                             sensor2.setTime(new Date());
                             sensorService.addSensor(sensor2);
                         } else {
-                            System.out.println("小军数据不对");
+                            System.out.println("小王数据不对");
                         }
 
                         rd.close();

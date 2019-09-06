@@ -17,4 +17,5 @@ public interface BabyMapper {
     void updateBaby(Baby baby);
     Baby getBaby(int id);
     List<Baby> list(int start, int count);
+    List<Baby> selectBabys(Baby baby);
 }

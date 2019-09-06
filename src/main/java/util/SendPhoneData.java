@@ -25,7 +25,7 @@ public class SendPhoneData {
             //2.将要发送的数据封装到数据包中
 //            String str ="udp传输，udp手机端服务器终于搞定了";
             byte[] buf =s.getBytes("utf-8");
-            DatagramPacket dp = new DatagramPacket(buf,buf.length, InetAddress.getByName("192.168.0.101"),8888);
+            DatagramPacket dp = new DatagramPacket(buf,buf.length, InetAddress.getByName(IP.IphoneIp),8888);
 
             //3.udp发送,使用socket服务将数据包发送出去
             ds.send(dp);

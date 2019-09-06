@@ -8,7 +8,7 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<title>Dashboard with Off-canvas Sidebar</title>
+		<title>婴幼儿管理-状态图</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -53,10 +53,11 @@
          <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
            
             <ul class="nav nav-sidebar">
-              <li class="active"><a href="listBaby">概览</a></li>
-              <li><a href="http://bootstrapzero.com" target="_ext">状态查看</a></li>
-              <li><a href="zhe" target="_ext">数据分析</a></li>
-              <li><a href="addBaby" target="_ext">新增幼儿</a></li>
+                <li><a href="listBaby">概览</a></li>
+
+                <li class="active"><a href="zhe" target="_ext">历史数据</a></li>
+                <li><a href="toAdd" target="_ext">新增幼儿</a></li>
+                <li ><a href="config" target="_ext">设置</a></li>
             </ul>
 </div>
 <div class="col-sm-9 col-md-10 main">

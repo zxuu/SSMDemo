@@ -7,7 +7,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <title>登录</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -22,36 +23,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  
- 
-  
+  <div class="container-fluid">
+   <div class="col-sm-9 col-md-10 main">
+ <div class="panel panel-success">
+  <div class="panel-heading">
+            <h3 class="panel-title">幼儿后台管理</h3>
+        </div>
+        <div class="panel-body">
     <form action="login" method="post">
-		<div class="login_row login_row_text">
-			<label id="login_lab_user" class="login_lab">账号</label>
-			<input id="loginname" class="itext" type="text" name="id" tabindex="1" autocomplete="off"
-			placeholder="用户名">
-		</div>
-		<div class="login_row login_row_text">
-			<label id="login_lab_pwd" class="login_lab">密码</label>
-			<input id="signpwd" class="itext" type="password" name="password" tabindex="2" autocomplete="off"
-			placeholder="密码">
-		</div>
+    <table class="addTable">
+	
+		<tr>
+                        <td>用户名：</td>
+                        <td><input type="text" name="id" id="loginname" placeholder="请在这里输入用户名"></td>
+                    </tr>
+                    <tr>
 		
-		<div class="login_row">
-			<input id="loginbut" type="submit" name="login_sub" value="登       录" tabindex="4">
-		</div>
-		<div id="meserror">
-			<ul id="meserrorul">
-			</ul>
-		</div>
+	
+			<tr>
+                        <td>密码：</td>
+                        <td><input type="password" name="password" id="signpwd" placeholder="请在这里输入密码"></td>
+                    </tr>
+                    <tr>
 		
+	 <tr class="submitTR">
+                        <td colspan="2" align="center">
+                            <button type="submit" class="btn btn-success">登 陆</button>
+                        </td>
+                    </tr>
+		</table>
 		
 	</form>
 	
-	
+</div>	
+</div>	
 
-
-   
-	
+  </div>
+	</div>
   </body>
 </html>

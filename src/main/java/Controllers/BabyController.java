@@ -9,6 +9,7 @@ import Service.BabyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import util.Page;
 
@@ -21,10 +22,10 @@ public class BabyController {
 	    private BabyService babyService;
 
 	    @RequestMapping("/toAdd")
-	    public ModelAndView toAdd() {
-	    	ModelAndView mav = new ModelAndView("addBaby");
+	    public String toAdd() {
 
-	    	return mav;
+
+	    	return "addBaby";
 	    }
 
 	    @RequestMapping("/addBaby")
@@ -105,4 +106,14 @@ public class BabyController {
 	        babyService.updateBaby(baby);
 	        return "redirect:listBaby";
 	    }
+
+	    //zxuu
+		@RequestMapping(value = "getAllBabys",method = RequestMethod.POST)
+		public String Get(HttpServletRequest requestBody){
+			System.out.println(requestBody.getParameter(""));
+			List<Baby> urineList = babyService.list(0,10);
+
+			String jsonResult = com.alibaba.fastjson.JSON.toJSONString(urineList);
+			return jsonResult;
+		}
 }

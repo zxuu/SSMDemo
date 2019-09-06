@@ -46,4 +46,33 @@ public class AdminController {
     	
     	
     }
+    @RequestMapping("/config")
+    public String config(HttpServletRequest request, HttpServletResponse response) {
+
+        return "config";
+    }
+    @RequestMapping("/updateAdmin")
+    public String updateAdmin(HttpServletRequest request, HttpServletResponse response) {
+
+        Admin admin = new Admin();
+
+
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+
+
+
+
+        admin.setId(name);
+        admin.setPassword(password);
+
+        try{
+            adminService.updateAdmin(admin);
+            System.out.println("------------");
+        }
+        catch(Exception e){
+            adminService.addAdmin(admin);
+        }
+        return "redirect:listBaby";
+    }
 }

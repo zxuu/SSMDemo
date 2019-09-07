@@ -26,12 +26,14 @@ public class Always implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-
-        new Thread(new Runnable() {
+        class r1 implements Runnable {
+            boolean f1 = true;
+            boolean f2 = true;
             @Override
             public void run() {
+                f1 = true;
+                f2 = true;
                 while (true) {
-
                     try {
                         Thread.sleep(4500);
                     } catch (InterruptedException e) {
@@ -53,10 +55,9 @@ public class Always implements InitializingBean {
                         conn.setDoOutput(true);
                         if (conn.getResponseCode() == 302) {
                             System.out.println(302);
-                            return ;
+                            return;
                         }
                         if (conn.getResponseCode() == 200) {
-//                            System.out.println(200);
                         }
                         BufferedReader rd = new BufferedReader(new InputStreamReader(
                                 conn.getInputStream(), "utf-8"));
@@ -74,21 +75,20 @@ public class Always implements InitializingBean {
                         //总list
                         List<SensorL> list = JSONArray.parseArray(result, SensorL.class);
 //                        System.out.println(result); //到这里就获取到结果了result是结果
-                        List<funcList> tempMList = JSONArray.parseArray(list.get(2).getFuncList(), funcList.class);
+                        List<funcList> tempMList = JSONArray.parseArray(list.get(1).getFuncList(), funcList.class);
 //                        System.out.println(tempMList.size()+":size");
-                        if (tempMList.size() > 0) {
+                        if (tempMList.size() > 0&&list.get(1).getMacAddr().equals("9EE15305004B1200")) {
 //                            System.out.println("小李尿不湿温度： " + tempMList.get(0).getData().toString() + " ℃");
                             System.out.println("小李尿不湿湿度： " + tempMList.get(1).getData().toString() + " 湿度");
-                            System.out.println(Float.parseFloat(tempMList.get(1).getData().toString()) > 50.0);
-                            if (Float.parseFloat(tempMList.get(1).getData().toString()) > 50.0
-                                    ) {
+                            if (Float.parseFloat(tempMList.get(1).getData().toString()) > 50.0&&f1) {
                                 SendPhoneData.sendAlertData("小李");
+                                f1 = false;
                                 System.out.println("小李小便啦，爸爸妈妈快去处理吧！");
                             }
 
                             Sensor sensor = new Sensor();
                             sensor.setId(0);
-                            sensor.setTemp(Float.valueOf(tempMList.get(0).getData().toString()));
+                            sensor.setTemp(Float.valueOf(tempMList.get(0).getData().toString())-12);
                             sensor.setHumi(Float.valueOf(tempMList.get(1).getData().toString()));
                             sensor.setTime(new Date());
                             sensorService.addSensor(sensor);
@@ -97,32 +97,50 @@ public class Always implements InitializingBean {
                             System.out.println("小李数据不对");
                         }
 
-                        List<funcList> tempJList = JSONArray.parseArray(list.get(3).getFuncList(), funcList.class);
-                        if (tempJList.size() > 0) {
+                        List<funcList> tempJList = JSONArray.parseArray(list.get(2).getFuncList(), funcList.class);
+                        if (tempJList.size() > 0&&list.get(2).getMacAddr().equals("35E05305004B1200")) {
 //                            System.out.println("小军尿不湿温度： " + tempJList.get(0).getData().toString() + " ℃");
                             System.out.println("小王尿不湿湿度： " + tempJList.get(1).getData().toString() + " 湿度");
-                            System.out.println(Float.parseFloat(tempJList.get(1).getData().toString()) > 50.0);
-                            if (Float.parseFloat(tempJList.get(1).getData().toString()) > 50.0
+                            if (Float.parseFloat(tempJList.get(1).getData().toString()) > 50.0&&f2
                                     ) {
+                                f2 = false;
                                 SendPhoneData.sendAlertData("小王");
                                 System.out.println("小王小便啦，爸爸妈妈快去处理吧！");
-//                                SendPhoneData.sendData("小红");
                             }
                             Sensor sensor2 = new Sensor();
                             sensor2.setId(1);
-                            sensor2.setTemp(Float.valueOf(tempJList.get(0).getData().toString()));
+                            sensor2.setTemp(Float.valueOf(tempJList.get(0).getData().toString())-12);
                             sensor2.setHumi(Float.valueOf(tempJList.get(1).getData().toString()));
                             sensor2.setTime(new Date());
                             sensorService.addSensor(sensor2);
                         } else {
                             System.out.println("小王数据不对");
                         }
-
                         rd.close();
                         conn.disconnect();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
+                }
+            }
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                //开始计时
+                    System.out.println("建立进程！！！！！");
+                    Thread t1 = new Thread(new r1());
+                    t1.start();
+                //时间到,
+                    try {
+                        Thread.sleep(30000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    t1.interrupt();
+                    System.out.println("进程已销毁！！！！！");
                 }
             }
         }).start();

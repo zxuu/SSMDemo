@@ -44,6 +44,6 @@
         SELECT * FROM sensor WHERE id = #{id}
     </select>
     <select id="listAllSensor" resultMap="BaseResultMap">
-        SELECT * FROM sensor
+        SELECT * FROM sensor limit 70
     </select>
 </mapper>
